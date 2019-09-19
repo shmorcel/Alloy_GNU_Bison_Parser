@@ -1,0 +1,4 @@
+/home/sinan/repos/research/alloy_bison_parser/build/CMakeFiles/edit_cache.dir
+/home/sinan/repos/research/alloy_bison_parser/build/CMakeFiles/rebuild_cache.dir
+/home/sinan/repos/research/alloy_bison_parser/build/CMakeFiles/alloy_parser.dir
+/home/sinan/repos/research/alloy_bison_parser/build/CMakeFiles/test.dir

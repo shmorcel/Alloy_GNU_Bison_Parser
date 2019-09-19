@@ -1,0 +1,767 @@
+Terminals unused in grammar
+
+    OR
+    AND
+    IFF
+    INTERSECTION
+    UNION
+    OVERRIDE
+    DOMAIN_R
+    RANGE_R
+    ARROW
+    IMPLIES
+    IN
+    EQUALS
+    LT
+    GT
+    LTE
+    GTE
+    NOT
+    NO
+    SET
+    CARD
+    LONE
+    SOME
+    ONE
+    ALL
+    SUM
+    MODULE
+    OPEN
+    AS
+    ABSTRACT
+    SIG
+    EXTENDS
+    DISJ
+    FACT
+    PRED
+    FUN
+    ASSERT
+    RUN
+    CHECK
+    FOR
+    BUT
+    EXACTLY
+    ELSE
+    LET
+    LCURLY
+    RCURLY
+    BAR
+    COLUMN
+
+
+State 39 conflicts: 1 shift/reduce
+State 50 conflicts: 7 reduce/reduce
+
+
+Grammar
+
+    0 $accept: start "end of file"
+
+    1 start: nothing
+    2      | nothing expr nothing
+
+    3 nothing: %empty
+    4        | NEWLINE nothing
+
+    5 expr: LPAREN expr RPAREN
+    6     | expr DOT expr LSQUARE expression_list RSQUARE
+    7     | expr LSQUARE expression_list RSQUARE
+    8     | expr DOT expr
+    9     | unary_operation LPAREN expr RPAREN
+   10     | unary_operation qualname
+   11     | unary_operation THIS
+   12     | unary_operation AT NAME
+   13     | unary_operation const
+   14     | THIS
+   15     | AT NAME
+   16     | qualname
+   17     | const
+
+   18 expression_list: expr
+   19                | expression_list COMMA expr
+
+   20 unary_operation: TRANSP
+   21                | REFL
+   22                | TRAN_CLO
+
+   23 qualname: NAME
+   24         | NAME FORSLASH qualname
+   25         | THIS FORSLASH qualname
+
+   26 const: INT
+   27      | SUBTRACTION INT
+   28      | NONE
+   29      | UNIV
+   30      | IDEN
+
+
+Terminals, with rules where they appear
+
+    "end of file" (0) 0
+    error (256)
+    NEWLINE (258) 4
+    NAME <std::string> (259) 12 15 23 24
+    INT <std::string> (260) 26 27
+    OR (261)
+    AND (262)
+    IFF (263)
+    INTERSECTION (264)
+    UNION (265)
+    SUBTRACTION (266) 27
+    OVERRIDE (267)
+    DOMAIN_R (268)
+    RANGE_R (269)
+    DOT (270) 6 8
+    ARROW (271)
+    IMPLIES (272)
+    IN (273)
+    EQUALS (274)
+    LT (275)
+    GT (276)
+    LTE (277)
+    GTE (278)
+    NOT (279)
+    NO (280)
+    SET (281)
+    CARD (282)
+    TRANSP (283) 20
+    REFL (284) 21
+    TRAN_CLO (285) 22
+    LONE (286)
+    SOME (287)
+    ONE (288)
+    ALL (289)
+    SUM (290)
+    MODULE (291)
+    OPEN (292)
+    AS (293)
+    ABSTRACT (294)
+    SIG (295)
+    EXTENDS (296)
+    DISJ (297)
+    FACT (298)
+    PRED (299)
+    FUN (300)
+    ASSERT (301)
+    RUN (302)
+    CHECK (303)
+    FOR (304)
+    BUT (305)
+    EXACTLY (306)
+    THIS (307) 11 14 25
+    AT (308) 12 15
+    ELSE (309)
+    NONE (310) 28
+    UNIV (311) 29
+    IDEN (312) 30
+    LET (313)
+    LPAREN (314) 5 9
+    RPAREN (315) 5 9
+    LCURLY (316)
+    RCURLY (317)
+    LSQUARE (318) 6 7
+    RSQUARE (319) 6 7
+    COMMA (320) 19
+    BAR (321)
+    COLUMN (322)
+    FORSLASH (323) 24 25
+
+
+Nonterminals, with rules where they appear
+
+    $accept (69)
+        on left: 0
+    start <AstNode> (70)
+        on left: 1 2
+        on right: 0
+    nothing (71)
+        on left: 3 4
+        on right: 1 2 4
+    expr <AstNode> (72)
+        on left: 5 6 7 8 9 10 11 12 13 14 15 16 17
+        on right: 2 5 6 7 8 9 18 19
+    expression_list <AstNode> (73)
+        on left: 18 19
+        on right: 6 7 19
+    unary_operation <std::string> (74)
+        on left: 20 21 22
+        on right: 9 10 11 12 13
+    qualname <std::string> (75)
+        on left: 23 24 25
+        on right: 10 16 24 25
+    const <std::string> (76)
+        on left: 26 27 28 29 30
+        on right: 13 17
+
+
+State 0
+
+    0 $accept: . start "end of file"
+
+    NEWLINE  shift, and go to state 1
+
+    $default  reduce using rule 3 (nothing)
+
+    start    go to state 2
+    nothing  go to state 3
+
+
+State 1
+
+    4 nothing: NEWLINE . nothing
+
+    NEWLINE  shift, and go to state 1
+
+    $default  reduce using rule 3 (nothing)
+
+    nothing  go to state 4
+
+
+State 2
+
+    0 $accept: start . "end of file"
+
+    "end of file"  shift, and go to state 5
+
+
+State 3
+
+    1 start: nothing .
+    2      | nothing . expr nothing
+
+    NAME         shift, and go to state 6
+    INT          shift, and go to state 7
+    SUBTRACTION  shift, and go to state 8
+    TRANSP       shift, and go to state 9
+    REFL         shift, and go to state 10
+    TRAN_CLO     shift, and go to state 11
+    THIS         shift, and go to state 12
+    AT           shift, and go to state 13
+    NONE         shift, and go to state 14
+    UNIV         shift, and go to state 15
+    IDEN         shift, and go to state 16
+    LPAREN       shift, and go to state 17
+
+    $default  reduce using rule 1 (start)
+
+    expr             go to state 18
+    unary_operation  go to state 19
+    qualname         go to state 20
+    const            go to state 21
+
+
+State 4
+
+    4 nothing: NEWLINE nothing .
+
+    $default  reduce using rule 4 (nothing)
+
+
+State 5
+
+    0 $accept: start "end of file" .
+
+    $default  accept
+
+
+State 6
+
+   23 qualname: NAME .
+   24         | NAME . FORSLASH qualname
+
+    FORSLASH  shift, and go to state 22
+
+    $default  reduce using rule 23 (qualname)
+
+
+State 7
+
+   26 const: INT .
+
+    $default  reduce using rule 26 (const)
+
+
+State 8
+
+   27 const: SUBTRACTION . INT
+
+    INT  shift, and go to state 23
+
+
+State 9
+
+   20 unary_operation: TRANSP .
+
+    $default  reduce using rule 20 (unary_operation)
+
+
+State 10
+
+   21 unary_operation: REFL .
+
+    $default  reduce using rule 21 (unary_operation)
+
+
+State 11
+
+   22 unary_operation: TRAN_CLO .
+
+    $default  reduce using rule 22 (unary_operation)
+
+
+State 12
+
+   14 expr: THIS .
+   25 qualname: THIS . FORSLASH qualname
+
+    FORSLASH  shift, and go to state 24
+
+    $default  reduce using rule 14 (expr)
+
+
+State 13
+
+   15 expr: AT . NAME
+
+    NAME  shift, and go to state 25
+
+
+State 14
+
+   28 const: NONE .
+
+    $default  reduce using rule 28 (const)
+
+
+State 15
+
+   29 const: UNIV .
+
+    $default  reduce using rule 29 (const)
+
+
+State 16
+
+   30 const: IDEN .
+
+    $default  reduce using rule 30 (const)
+
+
+State 17
+
+    5 expr: LPAREN . expr RPAREN
+
+    NAME         shift, and go to state 6
+    INT          shift, and go to state 7
+    SUBTRACTION  shift, and go to state 8
+    TRANSP       shift, and go to state 9
+    REFL         shift, and go to state 10
+    TRAN_CLO     shift, and go to state 11
+    THIS         shift, and go to state 12
+    AT           shift, and go to state 13
+    NONE         shift, and go to state 14
+    UNIV         shift, and go to state 15
+    IDEN         shift, and go to state 16
+    LPAREN       shift, and go to state 17
+
+    expr             go to state 26
+    unary_operation  go to state 19
+    qualname         go to state 20
+    const            go to state 21
+
+
+State 18
+
+    2 start: nothing expr . nothing
+    6 expr: expr . DOT expr LSQUARE expression_list RSQUARE
+    7     | expr . LSQUARE expression_list RSQUARE
+    8     | expr . DOT expr
+
+    NEWLINE  shift, and go to state 1
+    DOT      shift, and go to state 27
+    LSQUARE  shift, and go to state 28
+
+    $default  reduce using rule 3 (nothing)
+
+    nothing  go to state 29
+
+
+State 19
+
+    9 expr: unary_operation . LPAREN expr RPAREN
+   10     | unary_operation . qualname
+   11     | unary_operation . THIS
+   12     | unary_operation . AT NAME
+   13     | unary_operation . const
+
+    NAME         shift, and go to state 6
+    INT          shift, and go to state 7
+    SUBTRACTION  shift, and go to state 8
+    THIS         shift, and go to state 30
+    AT           shift, and go to state 31
+    NONE         shift, and go to state 14
+    UNIV         shift, and go to state 15
+    IDEN         shift, and go to state 16
+    LPAREN       shift, and go to state 32
+
+    qualname  go to state 33
+    const     go to state 34
+
+
+State 20
+
+   16 expr: qualname .
+
+    $default  reduce using rule 16 (expr)
+
+
+State 21
+
+   17 expr: const .
+
+    $default  reduce using rule 17 (expr)
+
+
+State 22
+
+   24 qualname: NAME FORSLASH . qualname
+
+    NAME  shift, and go to state 6
+    THIS  shift, and go to state 35
+
+    qualname  go to state 36
+
+
+State 23
+
+   27 const: SUBTRACTION INT .
+
+    $default  reduce using rule 27 (const)
+
+
+State 24
+
+   25 qualname: THIS FORSLASH . qualname
+
+    NAME  shift, and go to state 6
+    THIS  shift, and go to state 35
+
+    qualname  go to state 37
+
+
+State 25
+
+   15 expr: AT NAME .
+
+    $default  reduce using rule 15 (expr)
+
+
+State 26
+
+    5 expr: LPAREN expr . RPAREN
+    6     | expr . DOT expr LSQUARE expression_list RSQUARE
+    7     | expr . LSQUARE expression_list RSQUARE
+    8     | expr . DOT expr
+
+    DOT      shift, and go to state 27
+    RPAREN   shift, and go to state 38
+    LSQUARE  shift, and go to state 28
+
+
+State 27
+
+    6 expr: expr DOT . expr LSQUARE expression_list RSQUARE
+    8     | expr DOT . expr
+
+    NAME         shift, and go to state 6
+    INT          shift, and go to state 7
+    SUBTRACTION  shift, and go to state 8
+    TRANSP       shift, and go to state 9
+    REFL         shift, and go to state 10
+    TRAN_CLO     shift, and go to state 11
+    THIS         shift, and go to state 12
+    AT           shift, and go to state 13
+    NONE         shift, and go to state 14
+    UNIV         shift, and go to state 15
+    IDEN         shift, and go to state 16
+    LPAREN       shift, and go to state 17
+
+    expr             go to state 39
+    unary_operation  go to state 19
+    qualname         go to state 20
+    const            go to state 21
+
+
+State 28
+
+    7 expr: expr LSQUARE . expression_list RSQUARE
+
+    NAME         shift, and go to state 6
+    INT          shift, and go to state 7
+    SUBTRACTION  shift, and go to state 8
+    TRANSP       shift, and go to state 9
+    REFL         shift, and go to state 10
+    TRAN_CLO     shift, and go to state 11
+    THIS         shift, and go to state 12
+    AT           shift, and go to state 13
+    NONE         shift, and go to state 14
+    UNIV         shift, and go to state 15
+    IDEN         shift, and go to state 16
+    LPAREN       shift, and go to state 17
+
+    expr             go to state 40
+    expression_list  go to state 41
+    unary_operation  go to state 19
+    qualname         go to state 20
+    const            go to state 21
+
+
+State 29
+
+    2 start: nothing expr nothing .
+
+    $default  reduce using rule 2 (start)
+
+
+State 30
+
+   11 expr: unary_operation THIS .
+   25 qualname: THIS . FORSLASH qualname
+
+    FORSLASH  shift, and go to state 24
+
+    $default  reduce using rule 11 (expr)
+
+
+State 31
+
+   12 expr: unary_operation AT . NAME
+
+    NAME  shift, and go to state 42
+
+
+State 32
+
+    9 expr: unary_operation LPAREN . expr RPAREN
+
+    NAME         shift, and go to state 6
+    INT          shift, and go to state 7
+    SUBTRACTION  shift, and go to state 8
+    TRANSP       shift, and go to state 9
+    REFL         shift, and go to state 10
+    TRAN_CLO     shift, and go to state 11
+    THIS         shift, and go to state 12
+    AT           shift, and go to state 13
+    NONE         shift, and go to state 14
+    UNIV         shift, and go to state 15
+    IDEN         shift, and go to state 16
+    LPAREN       shift, and go to state 17
+
+    expr             go to state 43
+    unary_operation  go to state 19
+    qualname         go to state 20
+    const            go to state 21
+
+
+State 33
+
+   10 expr: unary_operation qualname .
+
+    $default  reduce using rule 10 (expr)
+
+
+State 34
+
+   13 expr: unary_operation const .
+
+    $default  reduce using rule 13 (expr)
+
+
+State 35
+
+   25 qualname: THIS . FORSLASH qualname
+
+    FORSLASH  shift, and go to state 24
+
+
+State 36
+
+   24 qualname: NAME FORSLASH qualname .
+
+    $default  reduce using rule 24 (qualname)
+
+
+State 37
+
+   25 qualname: THIS FORSLASH qualname .
+
+    $default  reduce using rule 25 (qualname)
+
+
+State 38
+
+    5 expr: LPAREN expr RPAREN .
+
+    $default  reduce using rule 5 (expr)
+
+
+State 39
+
+    6 expr: expr . DOT expr LSQUARE expression_list RSQUARE
+    6     | expr DOT expr . LSQUARE expression_list RSQUARE
+    7     | expr . LSQUARE expression_list RSQUARE
+    8     | expr . DOT expr
+    8     | expr DOT expr .
+
+    LSQUARE  shift, and go to state 44
+
+    LSQUARE   [reduce using rule 8 (expr)]
+    $default  reduce using rule 8 (expr)
+
+
+State 40
+
+    6 expr: expr . DOT expr LSQUARE expression_list RSQUARE
+    7     | expr . LSQUARE expression_list RSQUARE
+    8     | expr . DOT expr
+   18 expression_list: expr .
+
+    DOT      shift, and go to state 27
+    LSQUARE  shift, and go to state 28
+
+    $default  reduce using rule 18 (expression_list)
+
+
+State 41
+
+    7 expr: expr LSQUARE expression_list . RSQUARE
+   19 expression_list: expression_list . COMMA expr
+
+    RSQUARE  shift, and go to state 45
+    COMMA    shift, and go to state 46
+
+
+State 42
+
+   12 expr: unary_operation AT NAME .
+
+    $default  reduce using rule 12 (expr)
+
+
+State 43
+
+    6 expr: expr . DOT expr LSQUARE expression_list RSQUARE
+    7     | expr . LSQUARE expression_list RSQUARE
+    8     | expr . DOT expr
+    9     | unary_operation LPAREN expr . RPAREN
+
+    DOT      shift, and go to state 27
+    RPAREN   shift, and go to state 47
+    LSQUARE  shift, and go to state 28
+
+
+State 44
+
+    6 expr: expr DOT expr LSQUARE . expression_list RSQUARE
+    7     | expr LSQUARE . expression_list RSQUARE
+
+    NAME         shift, and go to state 6
+    INT          shift, and go to state 7
+    SUBTRACTION  shift, and go to state 8
+    TRANSP       shift, and go to state 9
+    REFL         shift, and go to state 10
+    TRAN_CLO     shift, and go to state 11
+    THIS         shift, and go to state 12
+    AT           shift, and go to state 13
+    NONE         shift, and go to state 14
+    UNIV         shift, and go to state 15
+    IDEN         shift, and go to state 16
+    LPAREN       shift, and go to state 17
+
+    expr             go to state 40
+    expression_list  go to state 48
+    unary_operation  go to state 19
+    qualname         go to state 20
+    const            go to state 21
+
+
+State 45
+
+    7 expr: expr LSQUARE expression_list RSQUARE .
+
+    $default  reduce using rule 7 (expr)
+
+
+State 46
+
+   19 expression_list: expression_list COMMA . expr
+
+    NAME         shift, and go to state 6
+    INT          shift, and go to state 7
+    SUBTRACTION  shift, and go to state 8
+    TRANSP       shift, and go to state 9
+    REFL         shift, and go to state 10
+    TRAN_CLO     shift, and go to state 11
+    THIS         shift, and go to state 12
+    AT           shift, and go to state 13
+    NONE         shift, and go to state 14
+    UNIV         shift, and go to state 15
+    IDEN         shift, and go to state 16
+    LPAREN       shift, and go to state 17
+
+    expr             go to state 49
+    unary_operation  go to state 19
+    qualname         go to state 20
+    const            go to state 21
+
+
+State 47
+
+    9 expr: unary_operation LPAREN expr RPAREN .
+
+    $default  reduce using rule 9 (expr)
+
+
+State 48
+
+    6 expr: expr DOT expr LSQUARE expression_list . RSQUARE
+    7     | expr LSQUARE expression_list . RSQUARE
+   19 expression_list: expression_list . COMMA expr
+
+    RSQUARE  shift, and go to state 50
+    COMMA    shift, and go to state 46
+
+
+State 49
+
+    6 expr: expr . DOT expr LSQUARE expression_list RSQUARE
+    7     | expr . LSQUARE expression_list RSQUARE
+    8     | expr . DOT expr
+   19 expression_list: expression_list COMMA expr .
+
+    DOT      shift, and go to state 27
+    LSQUARE  shift, and go to state 28
+
+    $default  reduce using rule 19 (expression_list)
+
+
+State 50
+
+    6 expr: expr DOT expr LSQUARE expression_list RSQUARE .
+    7     | expr LSQUARE expression_list RSQUARE .
+
+    "end of file"  reduce using rule 6 (expr)
+    "end of file"  [reduce using rule 7 (expr)]
+    NEWLINE        reduce using rule 6 (expr)
+    NEWLINE        [reduce using rule 7 (expr)]
+    DOT            reduce using rule 6 (expr)
+    DOT            [reduce using rule 7 (expr)]
+    RPAREN         reduce using rule 6 (expr)
+    RPAREN         [reduce using rule 7 (expr)]
+    LSQUARE        reduce using rule 6 (expr)
+    LSQUARE        [reduce using rule 7 (expr)]
+    RSQUARE        reduce using rule 6 (expr)
+    RSQUARE        [reduce using rule 7 (expr)]
+    COMMA          reduce using rule 6 (expr)
+    COMMA          [reduce using rule 7 (expr)]
+    $default       reduce using rule 6 (expr)

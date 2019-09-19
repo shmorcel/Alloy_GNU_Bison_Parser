@@ -1,0 +1,43 @@
+// idiom:
+// there should always be a state signature
+// all relations must be defined in the state signature's body
+// we only allow ternary relations that have State as their domain
+
+// idea: models that want to be turned into code must extend others that specify the architecture
+module aROSArchitecture
+
+abstract sig Message {}
+
+abstract sig Process {}
+
+abstract sig Topic {}
+
+sig State {
+  publishesTo: dynamic Process -> Topic, 
+  subscribesTo: Process -> Topic, 
+  queueing: Process one -> Message,
+  outputTo: Message -> lone Topic,
+  inputFrom: Message -> lone Topic
+  } {
+  // in each state, the domains do not intersect
+  outputTo.univ & inputFrom.univ = none 
+  // every message must have a topic
+  all m: Message | some outputTo[m] or some (inputFrom[m])
+  // if a message is published onto a topic by a process, then that process is a publisher on that topic
+  all t: Topic, p: Process | t in p.queueing.outputTo => p->t in publishesTo
+  // if a message is received from a topic by a process, then that process is a subscriber to that topic
+  all t: Topic, p: Process | t in p.queueing.inputFrom => p->t in subscribesTo
+  }
+
+run {
+  some queueing
+  some inputFrom
+  some outputTo
+  } for 5 but 1 State
+
+// pred step(s, s': State) {
+//   // precondition
+//   // postcondition
+//   lone p: Process | p.outputQueue !=
+//   }
+

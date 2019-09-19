@@ -1,0 +1,10 @@
+//fact {
+ all m: Message | some outputTo[m] or some inputFrom[m]
+//}
+
+//action name {
+  //before 1 = 1
+//}
+
+
+

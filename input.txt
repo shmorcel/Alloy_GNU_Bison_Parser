@@ -1,0 +1,25 @@
+/* !
+
+
+Caution: when the end of the file has a comment /**/ it doesn't work
+
+
+ set #a.v.a <: (a -> b) :> d & c ++ a - 3 not = 2
+a => b => c => d else c iff d or a[a,d]
+let x = a, y = c, e = f | a = b and a[a = 2,b,c]
+
+some disj m, y, d: disj Man,  disj c:  cow*/ 
+
+module asf [a, b, c]
+open a [ona, duo, tres]
+
+
+ abstract one sig Book { addr: Name -> set Addr,addr: Name -> Addr }
+ sig Book2 { addr: Name -> Addr }{}
+ sig Book2 { addr: Name -> Addr }{}
+
+fact onsdf {
+
+ some (m.knows)
+
+}

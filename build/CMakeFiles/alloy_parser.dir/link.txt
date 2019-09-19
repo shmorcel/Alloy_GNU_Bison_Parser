@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wno-deprecated-register  -rdynamic CMakeFiles/alloy_parser.dir/main.cpp.o CMakeFiles/alloy_parser.dir/mc_driver.cpp.o CMakeFiles/alloy_parser.dir/mc_lexer.yy.cc.o CMakeFiles/alloy_parser.dir/mc_parser.tab.cc.o  -o alloy_parser 

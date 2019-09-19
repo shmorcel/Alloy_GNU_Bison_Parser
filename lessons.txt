@@ -1,0 +1,14 @@
+When you have an optional operator or element, conflicts may occur.
+When you want to enforce a precedence on a reused operator, use the %prec option and declare the symbol in-between your other operators based on its precedence level relatively.
+
+the arrow operator uses some lone one set, minus the no which are used by the expression quantifiers and multiplicities. No some lone and one will also be used a few precedences down.
+
+There is the precedence, then there is how bison solves the ambiguity, which favors the rules that appear first.
+
+The use of the word token doesn't enforce any precedence. Preferrably, in a highly ambigious grammar, you want to use either precedence, left or right and order your operators and non-operators according to your grammar's precedence.
+
+You also want to have your own ordering of operators that have the same precedence and avoid using rule which have rules in them, so as to avoid the equal precedence ambiguity problem. 
+
+No ambiguity or conflicts, no nasty surprises.
+
+separate the maybe and the list from one another, no conflict happens if you do so.

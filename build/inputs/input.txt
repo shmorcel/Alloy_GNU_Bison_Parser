@@ -1,0 +1,51 @@
+// heart
+module A_3/ceilingsAndFloors
+
+sig Man {
+  disj ceiling, floor: one Plane
+  }
+
+one sig FirstMan, LastMan in Man {}
+
+sig Plane {}
+
+fun menAbove: Man -> Man {
+  ^(ceiling.~floor)
+  }
+fun menBelow: Man -> Man {
+  ^(floor.~ceiling)
+  }
+
+assert EqualityOfAboveAndBelow {
+  all m: Man | m in m.menBelow => m in m.menAbove
+  }
+
+check EqualityOfAboveAndBelow for 10 // they are equivalent, so...
+fact { // constraints
+  // Euclidean geometry only
+  all m: Man | m not in m.menAbove 
+  // no two men live on the same floor
+  floor in Man lone -> one Plane
+  ceiling in Man lone -> one Plane
+  // who is the first man and the last one?
+  no FirstMan.menBelow
+  no LastMan.menAbove
+  }
+
+pred oneMansCeilingIsAnotherMansFloor {
+  all m: Man - LastMan | some m': Man - m | m.ceiling = m'.floor
+  }
+
+pred oneMansFloorIsAnotherMansCeiling {
+  all m: Man - FirstMan | some m': Man - m | m.floor = m'.ceiling
+  }
+
+assert Implication {
+  oneMansCeilingIsAnotherMansFloor => oneMansFloorIsAnotherMansCeiling
+  }
+
+check Implication
+
+run oneMansFloorIsAnotherMansCeiling for 5
+run oneMansCeilingIsAnotherMansFloor for 5
+

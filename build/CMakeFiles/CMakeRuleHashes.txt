@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+2d7cf807f32287efda1778f36eda4bea mc_lexer.yy.cc
+625d3cd35e375a2044c5d54af13c1af9 mc_parser.tab.cc
